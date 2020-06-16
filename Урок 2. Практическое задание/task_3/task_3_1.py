@@ -15,7 +15,7 @@
 print("Данная программа запрашивает у пользователя целое число и выводит зеркальное по цифрам число.")
 def cycle_decision(number):
     rev_number = 0
-    while number!= 0:
+    while number != 0:
         rev_number = (rev_number * 10) + (number % 10)
         number = number // 10
     return rev_number

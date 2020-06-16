@@ -28,9 +28,7 @@ while count <= 10:
             print(f"Загаданное число больше, чем {answer}.")
     else:
         print(f"Вы угадали! Загаданное число: {answer}.")
-        if count == 10:
-            last_count = True
         break
     count += 1
-if count == 10 or not last_count:
-    print(f"Вы не угадали! Загаданное число: {number}.")
+    if count == 11:
+        print(f"Вы не угадали! Загаданное число: {number}.")
