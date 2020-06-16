@@ -7,3 +7,30 @@
 
 ЗДЕСЬ ДОЛЖНА БЫТЬ РЕАЛИЗАЦИЯ ЧЕРЕЗ ЦИКЛ
 """
+
+from random import randint
+
+print("Данная программа является классической реализацией 'Угадайки' целого числа от 0 до 100 за 10 попыток.")
+number = randint(0, 100)
+count = 1
+last_count = False
+while count <= 10:
+    print(f"Попытка №{count}.")
+    try:
+        answer = int(input("Введите целое число: "))
+    except ValueError:
+        print("Необходимо ввести целое число. Попробуйте ещё раз.")
+        continue
+    if answer != number:
+        if answer > number:
+            print(f"Загаданное число меньше, чем {answer}.")
+        if answer < number:
+            print(f"Загаданное число больше, чем {answer}.")
+    else:
+        print(f"Вы угадали! Загаданное число: {answer}.")
+        if count == 10:
+            last_count = True
+        break
+    count += 1
+if count == 10 or not last_count:
+    print(f"Вы не угадали! Загаданное число: {number}.")
