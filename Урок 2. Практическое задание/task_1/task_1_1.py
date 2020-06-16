@@ -32,3 +32,32 @@
 
 ЗДЕСЬ ДОЛЖНА БЫТЬ РЕАЛИЗАЦИЯ ЧЕРЕЗ ЦИКЛ
 """
+print("Данная программа является аналогом калькулятора. Приготовьтесь ввести два целых числа и действие с ними.")
+while True:
+    try:
+        number1 = int(input("Введите первое число: "))
+        number2 = int(input("Введите второе число: "))
+    except ValueError:
+        print("Необходимо ввести 2 целых числа. Попробуйте ещё раз.")
+        continue
+    action = input('Введите действие с двумя числами знаками "+", "-", "*", "/", либо 0 для выхода из программы.')
+    if action == "0":
+        print("Вы выбрали выход из программы! До новых встреч!")
+        break
+    elif action == "+":
+        result = number1 + number2
+    elif action == "-":
+        result = number1 - number2
+    elif action == "*":
+        result = number1 * number2
+    elif action == "/":
+        if number2 != 0:
+            result = number1 / number2
+        else:
+            print("Делить на ноль нельзя! Попробуйте всё сначала.")
+            continue
+    else:
+        print("К сожалению, вы ввели некорректный символ действия. Попробуйте всё сначала.")
+        continue
+    print(f"Результат вычисления: {result}")
+

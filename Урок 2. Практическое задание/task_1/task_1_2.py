@@ -33,3 +33,47 @@
 
 ЗДЕСЬ ДОЛЖНА БЫТЬ РЕАЛИЗАЦИЯ ЧЕРЕЗ РЕКУРСИЮ
 """
+print("Данная программа является аналогом калькулятора. Приготовьтесь ввести два целых числа и действие с ними.")
+
+def calculator():
+    action = input('Введите действие с двумя числами знаками "+", "-", "*", "/", либо 0 для выхода из программы: ')
+    if action == "0":
+        print("Вы выбрали выход из программы! До новых встреч!")
+    else:
+        if action in "+-*/":
+            try:
+                number1 = int(input("Введите первое число: "))
+                number2 = int(input("Введите второе число: "))
+
+                if action == "+":
+                    result = number1 + number2
+                    print(f"Результат вычисления: {result}")
+                    return calculator()
+
+                elif action == "-":
+                    result = number1 - number2
+                    print(f"Результат вычисления: {result}")
+                    return calculator()
+
+                elif action == "*":
+                    result = number1 * number2
+                    print(f"Результат вычисления: {result}")
+                    return calculator()
+
+                elif action == "/":
+                    if number2 != 0:
+                        result = number1 / number2
+                        print(f"Результат вычисления: {result}")
+                        return calculator()
+                    else:
+                        print("Делить на ноль нельзя! Попробуйте всё сначала.")
+                        return calculator()
+            except ValueError:
+                print("Необходимо ввести 2 целых числа. Попробуйте ещё раз.")
+                return calculator()
+        else:
+            print("К сожалению, вы ввели некорректный символ действия. Попробуйте всё сначала.")
+            return calculator()
+
+calculator()
+

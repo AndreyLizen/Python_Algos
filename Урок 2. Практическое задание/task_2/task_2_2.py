@@ -15,3 +15,23 @@
 
 ЗДЕСЬ ДОЛЖНА БЫТЬ РЕАЛИЗАЦИЯ ЧЕРЕЗ РЕКУРСИЮ
 """
+print("Данная программа запрашивает у пользователя целое число и выводит количество четных и нечетных цифр в данном числе.")
+
+def recur_decision(number, even=0, odd=0):
+    if number == 0:
+        return even, odd
+    else:
+        last_digit = number % 10
+        number = number // 10
+        if last_digit % 2 == 0:
+            even += 1
+            return recur_decision(number, even, odd)
+        else:
+            odd += 1
+            return recur_decision(number, even, odd)
+
+try:
+    number = int(input("Введите целое число (побольше): "))
+    print(f'Количество четных и нечетных цифр в числе: {recur_decision(number)}, соответственно.')
+except ValueError:
+    print("Необходимо ввести целое число. Попробуйте ещё раз.")

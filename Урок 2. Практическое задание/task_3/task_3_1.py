@@ -12,3 +12,16 @@
 
 ЗДЕСЬ ДОЛЖНА БЫТЬ РЕАЛИЗАЦИЯ ЧЕРЕЗ ЦИКЛ
 """
+print("Данная программа запрашивает у пользователя целое число и выводит зеркальное по цифрам число.")
+def cycle_decision(number):
+    rev_number = 0
+    while number!= 0:
+        rev_number = (rev_number * 10) + (number % 10)
+        number = number // 10
+    return rev_number
+
+try:
+    number = int(input("Введите целое число (побольше): "))
+    print(f'Зеркальное число: {cycle_decision(number)}.')
+except ValueError:
+    print("Необходимо ввести целое число. Попробуйте ещё раз.")
