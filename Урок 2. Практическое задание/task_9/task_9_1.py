@@ -10,3 +10,32 @@
 
 ЗДЕСЬ ДОЛЖНА БЫТЬ РЕАЛИЗАЦИЯ ЧЕРЕЗ ЦИКЛ
 """
+print("Данная программа подсчитывает наибольшую сумму цифр числа в ряде натуральных чисел.")
+def counting(n):
+    max_sum = 0
+    for i in range(1, n + 1):
+        try:
+            number = int(input(f'Введите натуральное число {str(i)}: '))
+            summ = 0
+            for k in str(number):
+                summ += int(k)
+            if summ > max_sum:
+                max_sum = summ
+                highest_num = number
+        except ValueError:
+            print("Необходимо ввести натуральное число. Попробуйте ещё раз.")
+
+    return f"Наибольшее число по сумме цифр: {highest_num}, сумма его цифр: {max_sum}."
+
+while True:
+    try:
+        n = int(input("Введите количество чисел: "))
+        if n < 1:
+            print("Попробуйте ещё раз.")
+            continue
+        break
+    except ValueError:
+        print("Необходимо ввести натуральное число. Попробуйте ещё раз.")
+
+print(counting(n))
+

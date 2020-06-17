@@ -17,3 +17,17 @@
 
 ЗДЕСЬ ДОЛЖНА БЫТЬ РЕАЛИЗАЦИЯ ЧЕРЕЗ ЦИКЛ
 """
+print("Данная программа выводит на экран коды и символы таблицы ASCII, начиная с символа под номером 32 и заканчивая 127-м включительно.")
+def counting(from_s, to_s, output_str=''):
+    for i in range(from_s, to_s):
+        if i <= to_s:
+            output_str += f'{i} - {chr(i)}  '
+    return output_str
+
+from_s = 32
+to_s = 127
+step = 10
+
+print("Вывод результата:")
+for i in range(from_s, to_s + 1, step):
+    print(counting(i, i + step))

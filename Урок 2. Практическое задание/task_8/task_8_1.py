@@ -12,3 +12,30 @@
 
 ЗДЕСЬ ДОЛЖНА БЫТЬ РЕАЛИЗАЦИЯ ЧЕРЕЗ ЦИКЛ
 """
+print("Данная программа подсчитывает количество повторений определенной цифры в ряде натуральных чисел.")
+def counting(n, aim_digit):
+    repeat_counting = 0
+    for i in range(1, n + 1):
+        try:
+            number = int(input(f'Введите натуральное число {str(i)}: '))
+            while number > 0:
+                if number % 10 == aim_digit:
+                    repeat_counting += 1
+                number = number // 10
+        except ValueError:
+            print("Необходимо ввести натуральное число. Попробуйте ещё раз.")
+    print(f"В данной последовательности чисел было введено {repeat_counting} цифр(ы) {aim_digit}.")
+
+
+while True:
+    try:
+        n = int(input("Введите количество чисел: "))
+        m = int(input("Введите целевую цифру подсчета: "))
+        if n < 1:
+            print("Попробуйте ещё раз.")
+            continue
+        break
+    except ValueError:
+        print("Необходимо ввести натуральное число. Попробуйте ещё раз.")
+
+counting(n, m)

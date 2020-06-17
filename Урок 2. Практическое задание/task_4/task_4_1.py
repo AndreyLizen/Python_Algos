@@ -8,3 +8,19 @@
 
 ЗДЕСЬ ДОЛЖНА БЫТЬ РЕАЛИЗАЦИЯ ЧЕРЕЗ ЦИКЛ
 """
+print("Данная программа запрашивает у пользователя количество N чисел ряда 1 -0.5 0.25 -0.125 ... и выводит сумму ряда чисел.")
+def cycle_decision(N):
+    total_sum = 0
+    start_num = 1
+    i = 0
+    while i < N:
+        total_sum += start_num
+        start_num = start_num / -2
+        i += 1
+    return total_sum
+
+try:
+    N = int(input("Введите количество элементов N: "))
+    print(f'Сумма ряда (1 -0.5 0.25 -0.125) из {N} элементов: {cycle_decision(N)}.')
+except ValueError:
+    print("Необходимо ввести целое число. Попробуйте ещё раз.")

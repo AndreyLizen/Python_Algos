@@ -7,3 +7,22 @@
 
 ЗДЕСЬ ДОЛЖНА БЫТЬ РЕАЛИЗАЦИЯ ЧЕРЕЗ РЕКУРСИЮ
 """
+from random import randint
+
+print("Данная программа является реализацией с помощью рекурсии 'Угадайки' целого числа от 0 до 100 за 10 попыток.")
+def recur_decision(count, number):
+    print(f"Попытка №{count}.")
+    answer = int(input("Введите целое число: "))
+    if count == 10 or answer == number:
+        if answer == number:
+            print(f"Вы угадали!")
+        print(f"Загаданное число: {number}.")
+        return
+    else:
+        if answer > number:
+            print(f"Загаданное число меньше, чем {answer}.")
+        if answer < number:
+            print(f"Загаданное число больше, чем {answer}.")
+    recur_decision(count + 1, number)
+
+recur_decision(1, randint(0, 100))

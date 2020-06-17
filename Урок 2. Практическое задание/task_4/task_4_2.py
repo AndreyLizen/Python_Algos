@@ -8,3 +8,15 @@
 
 ЗДЕСЬ ДОЛЖНА БЫТЬ РЕАЛИЗАЦИЯ ЧЕРЕЗ РЕКУРСИЮ
 """
+print("Данная программа запрашивает у пользователя количество N чисел ряда 1 -0.5 0.25 -0.125 ... и выводит сумму ряда чисел.")
+def recur_decision(i, N, start_num, total_sum):
+    if i == N:
+        print(f'Сумма ряда (1 -0.5 0.25 -0.125) из {N} элементов: {total_sum}.')
+    elif i < N:
+        return recur_decision(i + 1, N, start_num / -2, total_sum + start_num)
+
+try:
+    N = int(input("Введите количество элементов N: "))
+    recur_decision(0, N, 1, 0)
+except ValueError:
+    print("Необходимо ввести целое число. Попробуйте ещё раз.")
