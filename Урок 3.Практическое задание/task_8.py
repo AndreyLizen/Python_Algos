@@ -36,3 +36,9 @@
 [3, 3, 3, 3, 12]
 [3, 3, 3, 3, 12]
 """
+matrix = []
+for row in range(1, 6):
+    matrix.append([])
+    for i in range(1, 5):
+        a = int(input(f'Введите {i}й элемент {row}й строки: '))
+        matrix[row].append(a)
