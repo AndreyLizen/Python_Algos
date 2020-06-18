@@ -37,8 +37,15 @@
 [3, 3, 3, 3, 12]
 """
 matrix = []
-for row in range(1, 6):
+for row in range(5):
     matrix.append([])
-    for i in range(1, 5):
-        a = int(input(f'Введите {i}й элемент {row}й строки: '))
-        matrix[row].append(a)
+    summ_row = 0
+    for i in range(4):
+        new_el = int(input(f'Введите {i + 1}й элемент {row + 1}й строки: '))
+        matrix[row].append(new_el)
+        summ_row += new_el
+    matrix[row].append(summ_row)
+
+# Вывод полученной матрицы
+for i in range(len(matrix)):
+    print(matrix[i])
