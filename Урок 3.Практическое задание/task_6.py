@@ -13,3 +13,21 @@
 Массив: [88, 58, 50, 77, 49, 6, 42, 67, 14, 79]
 Сумма элементов между минимальным (6)  и максимальным (88) элементами: 234
 """
+my_list = [-49, 26, 41, 75, 23, 52, 88, 60, 69, -18]
+max_n = max(my_list)
+max_pos = my_list.index(max_n)
+min_n = min(my_list)
+min_pos = my_list.index(min_n)
+print(my_list)
+print(f"В данном массиве чисел максимальное число {max_n} стоит на позиции {max_pos}, а минимальное число {min_n} стоит на позиции {min_pos}")
+print("Подсчитаем сумму элементов, находящихся между максимальным и минимальным элементами массива, исключая значения самих элементов.")
+summ = 0
+if max_pos > min_pos:
+    if min_pos + 1 != max_pos:
+        for i in range(min_pos + 1, max_pos):
+            summ += my_list[i]
+else:
+    if max_pos + 1 != min_pos:
+        for i in range(max_pos + 1, min_pos):
+            summ += my_list[i]
+print(f"Сумма элементов: {summ}")

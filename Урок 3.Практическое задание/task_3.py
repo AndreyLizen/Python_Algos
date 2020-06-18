@@ -11,3 +11,20 @@
 6 позиции, а минимальное число  -49 стоит на    0 позиции
 [-49, 26, 41, 75, 23, 52, 88, 60, 69, -18]
 """
+my_list = [-49, 26, 41, 75, 23, 52, 88, 60, 69, -18]
+max_n = max(my_list)
+max_pos = my_list.index(max_n)
+min_n = min(my_list)
+min_pos = my_list.index(min_n)
+print(my_list)
+print(f"В данном массиве чисел максимальное число {max_n} стоит на позиции {max_pos}, а минимальное число {min_n} стоит на позиции {min_pos}")
+print("Меняем максимальный и минимальный элементы местами.")
+my_list.remove(max_n)
+my_list.remove(min_n)
+if max_n < min_n:
+    my_list.insert(max_pos, min_n)
+    my_list.insert(min_pos, max_n)
+else:
+    my_list.insert(min_pos, max_n)
+    my_list.insert(max_pos, min_n)
+print(my_list)

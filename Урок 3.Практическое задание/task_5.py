@@ -8,3 +8,9 @@
 Базовый список: [-55, -69, -5, 72, -41, -58, -79, 58, 74, 1]
 Максимальный отрицательный элемент в данном массиве = -5, его индекс 2
 """
+my_list = [-55, -69, -5, 72, -41, -58, -79, 58, 74, 1]
+list_negative = [my_list[i] for i in range(len(my_list)) if my_list[i] < 0]
+max_negative_el = min(list_negative, key=abs)
+print(my_list)
+print(f"Максимальный отрицательный элемент в данном массиве {max_negative_el}, его индекс: {my_list.index(max_negative_el)}.")
+del list_negative
