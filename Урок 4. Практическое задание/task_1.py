@@ -117,3 +117,12 @@ cProfile.run('recur_decision(11111111111111111111122334455, rev_number=0)')
 # # Функция с рекурсией: 33 function calls (4 primitive calls) in 0.000 seconds
 # Как показывает предыдущая оценка cProfile, функуия с меньшим количеством
 # вызовов эмпирически имеет преимущество по скорости. Установить степень преимущества в данном случае невозможно.
+
+# 3). Проанализировать сложность одного любого алгоритма
+# def cycle_decision(number):
+#     rev_number = 0
+#     while number != 0:
+#         rev_number = (rev_number * 10) + (number % 10)
+#         number = number // 10
+#     return rev_number
+# Сложность линейная O(n)
