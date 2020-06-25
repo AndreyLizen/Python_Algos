@@ -27,38 +27,62 @@
 """
 from collections import namedtuple
 
-Point = namedtuple('Point', ['x', 'y'])
-p = Point(x=1, y=2)
-print(p)
-Point(x=1, y=2)
-print(p.x)
-print(p[0])
 
 n = int(input('Введите количество предприятий для расчета прибыли: '))
 
 def new_firm():
     summa = 0
-    firm = namedtuple(input("Введите наименование предприятия: "), summa)
-    my_list = input("Введите сумму прибыли для предприятия поквартально через пробелы (4 числа), затем 'Enter': ").split()
+    Firm = namedtuple('Firm', ['name', 'income'])
+    firm_name = input("Введите наименование предприятия: ")
+    my_list = input("Введите сумму прибыли для предприятия (можно поквартально через пробелы, можно одним числом), затем нажмите 'Enter': ").split()
     for el in my_list:
         if not el.isdigit():
             summa = 0
-            my_list = []
             print("Вы ввели нечисловой символ! Перезапустите программу и попробуйте всё заново.")
             break
         summa = summa + int(el)
-
+    firm = Firm(name=firm_name, income=summa)
     return firm
 
 firms = []
 total_sum = 0
 for i in range(n):
     firms.append(new_firm())
-    print(new_firm())
+    print(firms)
 
-# Я просто в дикой ярости!!!
-# ПОЧЕМУ нельзя передать в именованный кортеж имя со стороны, а нужно его явно указывать?
-# Да, я пробовал всё и по разному - не передается, выдает ошибки!!!
-# Почему об этом ничего не было сказано на уроке?
-# Мне легко сделать нужный код БЕЗ этой бесполезной штуки - namedturple, просто очень неприятно
-# самому откапывать неработоспособность коллекций
+# import collections
+#
+# Firm = collections.namedtuple('Firm', ['name', 'quarter_gain', 'gain'])
+#
+# qnt_quarter = 4
+# firm_set = set()
+# all_gain = 0
+#
+# n = int(input('Введите количество предприятий: '))
+#
+# for i in range(1, n + 1):
+#     gain = 0
+#     gains = []
+#     name = input(f'Введите название предприятия {i}: ')
+#
+#     for j in range(qnt_quarter):
+#         gains.append(int(input(f'Введите прибыль за {j + 1}-й квартал: ')))
+#         gain += gains[j]
+#
+#     f = Firm(name=name, quarter_gain=tuple(gains), gain=gain)
+#     firm_set.add(f)
+#     all_gain += gain
+#
+# # Определяем среднюю прибыль всех предприятий
+# middle_gain = all_gain / n
+# print('Средняя квартальная прибыль всех предприятий: ', middle_gain)
+#
+# print(f'\nПредприятия с прибылью выше среднего:')
+# for f in firm_set:
+#     if f.gain > middle_gain:
+#         print(f'Прибыль фирмы {f.name} - {f.gain}')
+#
+# print(f'\nПредприятия с прибылью ниже среднего:')
+# for f in firm_set:
+#     if f.gain < middle_gain:
+#         print(f'Прибыль фирмы {f.name} - {f.gain}')
