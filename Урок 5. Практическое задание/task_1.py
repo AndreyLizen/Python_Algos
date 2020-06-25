@@ -27,7 +27,6 @@
 """
 from collections import namedtuple
 
-
 n = int(input('Введите количество предприятий для расчета прибыли: '))
 
 def new_firm():
@@ -48,41 +47,17 @@ firms = []
 total_sum = 0
 for i in range(n):
     firms.append(new_firm())
-    print(firms)
+    total_sum += firms[i].income
 
-# import collections
-#
-# Firm = collections.namedtuple('Firm', ['name', 'quarter_gain', 'gain'])
-#
-# qnt_quarter = 4
-# firm_set = set()
-# all_gain = 0
-#
-# n = int(input('Введите количество предприятий: '))
-#
-# for i in range(1, n + 1):
-#     gain = 0
-#     gains = []
-#     name = input(f'Введите название предприятия {i}: ')
-#
-#     for j in range(qnt_quarter):
-#         gains.append(int(input(f'Введите прибыль за {j + 1}-й квартал: ')))
-#         gain += gains[j]
-#
-#     f = Firm(name=name, quarter_gain=tuple(gains), gain=gain)
-#     firm_set.add(f)
-#     all_gain += gain
-#
-# # Определяем среднюю прибыль всех предприятий
-# middle_gain = all_gain / n
-# print('Средняя квартальная прибыль всех предприятий: ', middle_gain)
-#
-# print(f'\nПредприятия с прибылью выше среднего:')
-# for f in firm_set:
-#     if f.gain > middle_gain:
-#         print(f'Прибыль фирмы {f.name} - {f.gain}')
-#
-# print(f'\nПредприятия с прибылью ниже среднего:')
-# for f in firm_set:
-#     if f.gain < middle_gain:
-#         print(f'Прибыль фирмы {f.name} - {f.gain}')
+average_income = total_sum / n
+print(f'Среднегодовая прибыль всех предприятий: {average_income:.2f}')
+
+print('Предприятия с прибылью выше среднего показателя:')
+for i in range(n):
+    if firms[i].income > average_income:
+        print(f'{firms[i].name} с прибылью {firms[i].income}')
+
+print('Предприятия с прибылью, не превышающей средний показатель:')
+for i in range(n):
+    if firms[i].income <= average_income:
+        print(f'{firms[i].name} с прибылью {firms[i].income}')
