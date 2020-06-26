@@ -25,3 +25,39 @@
 
 Предприятия, с прибылью ниже среднего значения: Копыта
 """
+from collections import namedtuple
+
+n = int(input('Введите количество предприятий для расчета прибыли: '))
+
+def new_firm():
+    summa = 0
+    Firm = namedtuple('Firm', ['name', 'income'])
+    firm_name = input("Введите наименование предприятия: ")
+    my_list = input("Введите сумму прибыли для предприятия (можно поквартально через пробелы, можно одним числом), затем нажмите 'Enter': ").split()
+    for el in my_list:
+        if not el.isdigit():
+            summa = 0
+            print("Вы ввели нечисловой символ! Перезапустите программу и попробуйте всё заново.")
+            break
+        summa = summa + int(el)
+    firm = Firm(name=firm_name, income=summa)
+    return firm
+
+firms = []
+total_sum = 0
+for i in range(n):
+    firms.append(new_firm())
+    total_sum += firms[i].income
+
+average_income = total_sum / n
+print(f'Среднегодовая прибыль всех предприятий: {average_income:.2f}')
+
+print('Предприятия с прибылью выше среднего показателя:')
+for i in range(n):
+    if firms[i].income > average_income:
+        print(f'{firms[i].name} с прибылью {firms[i].income}')
+
+print('Предприятия с прибылью, не превышающей средний показатель:')
+for i in range(n):
+    if firms[i].income <= average_income:
+        print(f'{firms[i].name} с прибылью {firms[i].income}')
