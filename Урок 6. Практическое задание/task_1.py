@@ -12,3 +12,76 @@
 ВНИМАНИЕ: ЗАДАНИЯ, В КОТОРЫХ БУДУТ ГОЛЫЕ ЦИФРЫ ЗАМЕРОВ (БЕЗ АНАЛИТИКИ)
 БУДУТ ПРИНИМАТЬСЯ С ОЦЕНКОЙ УДОВЛЕТВОРИТЕЛЬНО
 """
+
+from memory_profiler import profile
+
+# 1) задача 4 урока 3
+# my_list = [2, 2, 2, 7, 23, 1, 44, 44, 3, 2, 10, 7, 4, 11, 2]
+
+
+@profile()
+def f1():
+    my_list = [el for el in range(100, 100001) if el % 2 == 0]
+    max_repeat_el = max(my_list, key=my_list.count)
+    print(my_list)
+    print(f"Наибольшее число повторений в массиве у числа {max_repeat_el}, количество повторений: {my_list.count(max_repeat_el)}.")
+    del my_list
+    print("Память после удаления списка")
+
+@profile()
+def f2():
+    my_list = [el for el in range(100, 100001) if el % 2 == 0]
+    max_repeat = 0
+    for i in range(len(my_list)):
+        if my_list.count(my_list[i]) > max_repeat:
+            max_repeat = my_list.count(my_list[i])
+            max_repeat_el = my_list[i]
+    print(my_list)
+    print(f"Наибольшее число повторений в массиве у числа {max_repeat_el}, количество повторений: {max_repeat}.")
+    del my_list
+    print("Память после удаления списка")
+
+f1()
+f2()
+
+# Результаты измерений:
+#
+# Line #    Mem usage    Increment   Line Contents
+# ================================================
+#     22     10.7 MiB     10.7 MiB   @profile()
+#     23                             def f1():
+#     24     13.1 MiB      0.3 MiB       my_list = [el for el in range(100, 100001) if el % 2 == 0]
+#     25     13.1 MiB      0.0 MiB       max_repeat_el = max(my_list, key=my_list.count)
+#     26     13.7 MiB      0.7 MiB       print(my_list)
+#     27     13.7 MiB      0.0 MiB       print(f"Наибольшее число повторений в массиве у числа {max_repeat_el}, количество повторений: {my_list.count(max_repeat_el)}.")
+#     28     13.7 MiB      0.0 MiB       del my_list
+#     29     13.7 MiB      0.0 MiB       print("Память после удаления списка")
+
+# Line #    Mem usage    Increment   Line Contents
+# ================================================
+#     31     13.7 MiB     13.7 MiB   @profile()
+#     32                             def f2():
+#     33     13.8 MiB      0.0 MiB       my_list = [el for el in range(100, 100001) if el % 2 == 0]
+#     34     13.8 MiB      0.0 MiB       max_repeat = 0
+#     35     13.8 MiB      0.0 MiB       for i in range(len(my_list)):
+#     36     13.8 MiB      0.0 MiB           if my_list.count(my_list[i]) > max_repeat:
+#     37     13.8 MiB      0.0 MiB               max_repeat = my_list.count(my_list[i])
+#     38     13.8 MiB      0.0 MiB               max_repeat_el = my_list[i]
+#     39     13.8 MiB      0.0 MiB       print(my_list)
+#     40     13.8 MiB      0.0 MiB       print(f"Наибольшее число повторений в массиве у числа {max_repeat_el}, количество повторений: {max_repeat}.")
+#     41     13.8 MiB      0.0 MiB       del my_list
+#     42     13.8 MiB      0.0 MiB       print("Память после удаления списка")
+
+# Многое не так, как в примерах, разобранных на уроке:
+# 1). При отработке 1-й функции: 22     10.7 MiB     10.7 MiB   не понимаю, откуда взялась цифра 10,7 и
+# из чего она складывается
+# 2). При отработке 1-й функции: 24     13.1 MiB      0.3 MiB  -неверно указано приращение,
+# но об этом было предупреждение,
+# 3). При отработке 1-й функции: #     28     13.7 MiB      0.0 MiB       del my_list
+# #     29     13.7 MiB      0.0 MiB       print("Память после удаления списка")
+# Память не была очищена по непонятной причине - то ли команда не работает, то ли в результатах измерений не отображается.
+# 4). При отработке 2-й функции: не указано никаких приращений - ни при создании списка, ни при его печати,
+# и нет никакой реакции на удаление списка в конце. Не ясно, то ли это ошибка измерений, то ли работа
+# интерпретатора с оперативной памятью компьютера.
+#
+# Версия интерпретатора: Python3.8, разрядность системы 64.
